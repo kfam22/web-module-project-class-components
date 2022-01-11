@@ -19,17 +19,26 @@ class TodoForm extends React.Component{
     // handle submit (update class property to complete form) set state in app.js and pass function through props
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleAddTodo(this.state.input)
+        this.props.handleAddTodo(this.state.input);
+        this.setState({
+            input: ''
+        });
+        
     }
 
     render(){
         return(
-            <div>
+            <div className='header'>
+                <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange} type='text' name='todo'></input>
-                    <button>Add Todo</button>
+                    <input placeholder='enter tasks' onChange={this.handleChange} type='text' name='todo' value={this.state.input}></input>
+                    <button>add todo</button>
                 </form>
-                <button>Clear Completed</button>
+                </div>
+
+                <div>
+                <button onClick={this.props.handleClearCompleted} >clear completed</button>
+                </div>
             </div>
         );
     }

@@ -14,6 +14,16 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
 
   // clear todo
+  handleClearCompleted = () => {
+    const newTodos = this.state.todos.filter(todo => {
+      return todo.completed === false;
+    })
+
+    this.setState({
+      ...this.state,
+      todos: newTodos
+    });
+  }
 
   // toggle todo
   handleToggleTodo = (selectedTodo) => {
@@ -50,8 +60,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1 className='title'>To Do List</h1>
+        <TodoForm handleClearCompleted={this.handleClearCompleted} handleAddTodo={this.handleAddTodo} />
         <ToDoList handleToggleTodo={this.handleToggleTodo} todos={this.state.todos} />
-        <TodoForm handleAddTodo={this.handleAddTodo} />
       </div>
     );
   }

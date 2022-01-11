@@ -5,7 +5,7 @@ import ToDo from './Todo'
 class ToDoList extends React.Component {
     render() {
         return(
-            <div>
+            <div className='tdlist'>
                 {this.props.todos.map(todo => (
                     <ToDo handleToggleTodo={this.props.handleToggleTodo} key={todo.id} todo={todo} />
                 ))}
